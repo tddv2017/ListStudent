@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <title>List Student</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <!-- Data Table-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="index.js"></script>
+    </head>
+<body>
+    <div class="container jumbotron">
+        <div class="d-flex justify-content-center">
+            <h2>Danh sách Sinh Viên</h2>
+        </div>
+        <div>
+            <button id="btn-add-student" class="btn btn-primary mb-4"><i class="fas fa-plus"></i>&nbsp;Thêm Student</button>
+        </div>
+        <table class="table table-bordered table-striped table-hover text-center" id="id-table-users">
+          <thead class="bg bg-dark text-light">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Birthday</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    <!-- START MODAL ADD STUDENT -->
+        <div id="add-user-modal" class="modal fade show" tabindex="-1" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="h5-modal-title">Thêm sinh viên</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-add-user-name">Name</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-add-user-name" name="Name" placeholder="Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-add-user-birthday">Birthday</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" id="input-add-user-birthday" name="Birthday" placeholder="Birthday" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-add-user-email">Email</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-add-user-email" name="Email" placeholder="Email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-add-user-phone">Phone</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-add-user-phone" name="Phone" placeholder="Phone" class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" id="btn-insert-user">Thêm sinh viên</button>
+                        <button class="btn btn-warning" id="btn-cancel-user" data-dismiss="modal">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- START MODAL EDIT STUDENT -->
+        <div id="edit-user-modal" class="modal fade show" tabindex="-1" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="h5-modal-title">Thêm sinh viên</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-edit-user-name">Name</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-edit-user-name" name="Name" placeholder="Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-edit-user-birthday">Birthday</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="date" id="input-edit-user-birthday" name="Birthday" placeholder="Birthday" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-edit-user-email">Email</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-edit-user-email" name="Email" placeholder="Email" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-4">
+                                    <label for="input-edit-user-phone">Phone</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" id="input-edit-user-phone" name="Phone" placeholder="Phone" class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success" id="btn-update-user">Update thông tin sinh viên</button>
+                        <button class="btn btn-warning" id="btn-cancel-user" data-dismiss="modal">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- START MODAL DELETE STUDENT -->
+        <div id="delete-user-modal" class="modal fade show" tabindex="-1" aria-modal="true" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="h5-modal-title">Xác nhận xóa user</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row form-group">
+                                <div class="col-sm-12">
+                                    <h6>Bạn có chắn chắn muốn xóa user này không?</h6>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" id="btn-delete-user">Xác nhận</button>
+                        <button class="btn btn-info" id="btn-cancel-user" data-dismiss="modal">Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
